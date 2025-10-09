@@ -3,7 +3,15 @@ const app = express();
 const dotenv = require('dotenv');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const bodyParser = require('body-parser');
+const authRoutes = require('./routes/authRoutes.js');
 
+
+app.use(express.json())
+app.use(cookieParser())
+app.use(bodyParser.urlencoded({extended :true}))
+
+app.use('/api/auth', authRoutes);
 
 const connectDb = require('./config/dbConnect.js')
 
